@@ -1,0 +1,32 @@
+<div class="form">
+  <md-card>
+    <md-card-title>
+      <md-card-title-text>
+        <h1 class="md-headline">Crea tu candidato</h1>
+        <h2 class="md-subhead">¿No te sientes representado?</h2>
+      </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+      <form>
+        <md-input-container class="md-block">
+          <input name="lastName" ng-model="lastName" placeholder="Nombre" required>
+          <div ng-messages="userForm.lastName.$error" ng-show="userForm.lastName.$dirty">
+            <div ng-message="required">This is required!</div>
+          </div>
+        </md-input-container>
+        <md-input-container class="md-block">
+          <input name="lastName" ng-model="lastName" placeholder="Nombre" required>
+          <div ng-messages="userForm.lastName.$error" ng-show="userForm.lastName.$dirty">
+            <div ng-message="required">This is required!</div>
+          </div>
+        </md-input-container>
+        <div>
+          <md-checkbox indeterminate="true">Estoy seguro de mi voto</md-checkbox>
+        </div>
+      </form>
+    </md-card-content>
+    <md-card-actions layout="row" layout-align="end center">
+      <md-button class="md-accent md-raised">Crear</md-button>
+    </md-card-actions>
+  </md-card>
+</div>

@@ -1,0 +1,17 @@
+<div class="results-container">
+  <div flex flex-gt-xs="50" flex-offset-gt-xs="25">
+    <md-list class="md-primary">
+      <md-subheader class="md-no-sticky">Top más votados!</md-subheader>
+      <md-list-item ng-repeat="person in [0,1,2,3,4,5,6]">
+        <img ng-src="{{results.imagePath}}" class="md-avatar" />
+        <span>BLABALA</span>
+        <span flex></span>
+        <div layout="row" layout-align="end center">
+          <md-button class="md-icon-button">
+            <md-icon>share</md-icon>
+          </md-button>
+        </div>
+      </md-list-item>
+    </md-list>
+  </div>
+</div>

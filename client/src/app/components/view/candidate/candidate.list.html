@@ -1,0 +1,18 @@
+<div class="candidates-container">
+  <md-card class="candidate" ng-repeat="items in [0,1,2,3,4,5,6,7,8,9]">
+    <img src="assets/images/student.jpg" class="md-card-image" alt="image caption">
+    <md-card-content>
+      <h2>Name</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam</p>
+    </md-card-content>
+    <md-card-actions layout="row" layout-align="end center">
+      <md-button class="md-primary" ui-sref="candidate.vote">Ver</md-button>
+    </md-card-actions>
+  </md-card>
+</div>
+
+<div class="list-fab">
+  <md-button class="md-fab" ui-sref="candidate.add">
+    <md-icon>add</md-icon>
+  </md-button>
+</div>

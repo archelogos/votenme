@@ -1,0 +1,32 @@
+<md-progress-linear class="md-accent" ng-if="false" md-mode="indeterminate"></md-progress-linear>
+
+<md-sidenav md-component-id="left" class="md-sidenav-left">
+  <md-list>
+    <md-list-item>
+      <md-button href="">
+        <md-icon>menu</md-icon>
+        <span> votar </span>
+      </md-button>
+    </md-list-item>
+    <md-list-item>
+      <md-button href="">
+        <md-icon>menu</md-icon>
+        <span> votar </span>
+      </md-button>
+    </md-list-item>
+  </md-list>
+</md-sidenav>
+
+<md-toolbar>
+  <div class="md-toolbar-tools">
+    <md-button class="md-icon-button" ng-click="vm.openLeftMenu()">
+      <md-icon>menu</md-icon>
+    </md-button>
+    <span>voten.me</span>
+    <!-- fill up the space between left and right area -->
+    <span flex></span>
+    <md-button hide>
+      Right Bar Button
+    </md-button>
+  </div>
+</md-toolbar>
