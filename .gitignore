@@ -1,4 +1,6 @@
 api/node_modules/
+api/*.log
+api/config.json
 client/node_modules/
 client/bower_components/
 client/coverage/
