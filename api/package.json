@@ -1,7 +1,7 @@
 {
   "name": "@votenme/api",
   "version": "0.0.0",
-  "description" : "",
+  "description": "",
   "license": "",
   "repository": "",
   "scripts": {
@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "body-parser": "^1.15.0",
+    "cors": "^2.7.1",
     "express": "^4.13.4",
     "gcloud": "~0.31.0",
     "kerberos": "^0.0.19",

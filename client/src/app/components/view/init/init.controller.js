@@ -6,9 +6,11 @@
     .controller('InitController', InitController);
 
   /** @ngInject */
-  function InitController($timeout) {
+  function InitController($timeout, user) {
     var vm = this;
 
+    vm.user = user;
 
   }
+
 })();

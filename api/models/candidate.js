@@ -19,19 +19,19 @@ var config = require('../config');
 var entity = require('./entity');
 var router = express.Router();
 
-entity.setKind('User');
-var user = entity;
+entity.setKind('Candidate');
+var candidate = entity;
 
 // Automatically parse request body as JSON
 router.use(bodyParser.json());
 
 /**
- * GET /api/user
+ * GET /api/candidate
  *
- * Retrieve a page of user (up to ten at a time).
+ * Retrieve a page of candidate (up to ten at a time).
  */
 router.get('/', function list (req, res, next) {
-  user.list(10, req.query.pageToken, function (err, entities, cursor) {
+  candidate.list(10, req.query.pageToken, function (err, entities, cursor) {
     if (err) {
       return next(err);
     }
@@ -43,14 +43,12 @@ router.get('/', function list (req, res, next) {
 });
 
 /**
- * POST /api/user
+ * POST /api/candidate
  *
- * Create a new user.
- *
- * default values: vote: false, voteId: null
+ * Create a new candidate.
  */
 router.post('/', function insert (req, res, next) {
-  user.create({vote: false, voteId: null}, function (err, entity) {
+  candidate.create(req.body, function (err, entity) {
     if (err) {
       return next(err);
     }
@@ -59,12 +57,12 @@ router.post('/', function insert (req, res, next) {
 });
 
 /**
- * GET /api/user/:id
+ * GET /api/candidate/:id
  *
- * Retrieve a user.
+ * Retrieve a candidate.
  */
-router.get('/:user', function get (req, res, next) {
-  user.read(req.params.user, function (err, entity) {
+router.get('/:candidate', function get (req, res, next) {
+  candidate.read(req.params.book, function (err, entity) {
     if (err) {
       return next(err);
     }
@@ -73,12 +71,12 @@ router.get('/:user', function get (req, res, next) {
 });
 
 /**
- * PUT /api/user/:id
+ * POST /api/candidate/:id
  *
- * Update a user.
+ * Update a candidate.
  */
-router.put('/:user', function update (req, res, next) {
-  user.update(req.params.user, req.body, function (err, entity) {
+router.post('/:candidate', function update (req, res, next) {
+  candidate.update(req.params.book, req.body, function (err, entity) {
     if (err) {
       return next(err);
     }
@@ -87,12 +85,12 @@ router.put('/:user', function update (req, res, next) {
 });
 
 /**
- * DELETE /api/user/:id
+ * DELETE /api/candidate/:id
  *
- * Delete a user.
+ * Delete a candidate.
  */
-router.delete('/:user', function _delete (req, res, next) {
-  user.delete(req.params.user, function (err) {
+router.delete('/:candidate', function _delete (req, res, next) {
+  candidate.delete(req.params.book, function (err) {
     if (err) {
       return next(err);
     }

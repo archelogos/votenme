@@ -15,16 +15,28 @@
 
 var path = require('path');
 var express = require('express');
+var cors = require('cors');
 var config = require('./config');
 
 var app = express();
+
+var whitelist = ['http://localhost:3000'];
+var corsOptions = {
+  origin: function(origin, callback){
+    var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
+    callback(null, originIsWhitelisted);
+  }
+};
 
 app.disable('etag');
 app.set('views', path.join(__dirname, 'views'));
 app.set('trust proxy', true);
 
 // User
-app.use('/api/user', require('./models/user'));
+app.use('/api/user', cors(corsOptions), require('./models/user'));
+
+// User
+app.use('/api/candidate', require('./models/candidate'));
 
 // Redirect root to /books
 app.get('/', function (req, res) {

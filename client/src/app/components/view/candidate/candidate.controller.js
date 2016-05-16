@@ -6,9 +6,16 @@
     .controller('CandidateController', CandidateController);
 
   /** @ngInject */
-  function CandidateController($timeout, $state, $mdBottomSheet, $mdDialog) {
+  function CandidateController($timeout, $state, $mdBottomSheet, $mdDialog, Data, candidates, user) {
     var vm = this;
 
+    vm.candidates = candidates;
+    vm.user = user;
+
+    /* To init */
+    if(vm.user.vote === true)
+      $state.go('init');
+      
     vm.imagePath = 'assets/images/student.jpg'
 
     vm.openBottomSheet = function() {

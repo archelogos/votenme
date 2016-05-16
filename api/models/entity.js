@@ -19,12 +19,13 @@ var config = require('../config');
 var ds = gcloud.datastore({
   projectId: config.get('GCLOUD_PROJECT')
 });
-var kind = '';
+var kind = 'User';
 
 function setKind(kind){
     kind = kind;
 }
 
+console.log(kind);
 // Translates from Datastore's entity format to
 // the format expected by the application.
 //

@@ -18,27 +18,39 @@
             url: '/',
             templateUrl: 'app/components/view/init/init.html',
             controller: 'InitController',
-            controllerAs: 'init'
+            controllerAs: 'vm',
+            resolve: {
+              user: function(Data){
+                return Data.getUser();
+              }
+            }
         })
         .state('candidate', {
             url: '/candidate',
             abstract: true,
-            template: '<ui-view/>'
+            template: '<ui-view/>',
+            resolve: {
+              user: function(Data){
+                return Data.getUser();
+              },
+              candidates: function(Data, Candidate){
+                return [1,2,2,3,4];
+              }
+            }
         })
         .state('candidate.list', {
             url: '/list',
             parent: 'candidate',
             templateUrl: 'app/components/view/candidate/candidate.list.html',
             controller: 'CandidateController',
-            controllerAs: 'candidate'
-            //resolve:
+            controllerAs: 'vm'
         })
         .state('candidate.add', {
             url: '/add',
             parent: 'candidate',
             templateUrl: 'app/components/view/candidate/candidate.add.html',
             controller: 'CandidateController',
-            controllerAs: 'candidate'
+            controllerAs: 'vm'
             //resolve:
         })
         .state('candidate.vote', {
@@ -46,14 +58,14 @@
             parent: 'candidate',
             templateUrl: 'app/components/view/candidate/candidate.vote.html',
             controller: 'CandidateController',
-            controllerAs: 'candidate'
+            controllerAs: 'vm'
             //resolve:
         })
         .state('results', {
             url: '/results',
             templateUrl: 'app/components/view/results/results.html',
             controller: 'ResultsController',
-            controllerAs: 'results'
+            controllerAs: 'vm'
             //resolve:
         });
     }

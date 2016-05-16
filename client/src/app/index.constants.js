@@ -14,7 +14,7 @@
         },
         'DEBUG_MODE' : true,
         'ERROR_REPORT' : false,
-        'API_URL': ''
+        'API_URL': 'http://localhost:8080/api/'
     })
 
 })();

@@ -99,11 +99,11 @@ md-radio-button, md-checkbox{
 }
 
 .vote-container md-card{
-  margin: 0;
+  /*margin: 0;*/
 }
 
 .vote-container md-card img{
-  height: 240px;
+  /*height: 240px;*/
 }
 
 .vote-container md-card .full{
