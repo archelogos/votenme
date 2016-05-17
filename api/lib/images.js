@@ -15,6 +15,9 @@
 
 var gcloud = require('gcloud');
 var config = require('../config');
+var fs = require('fs');
+var imagemin = require('image-min');
+var path = require('path');
 
 var CLOUD_BUCKET = config.get('CLOUD_BUCKET');
 
@@ -41,10 +44,26 @@ function sendUploadToGCS (req, res, next) {
   if (!req.file) {
     return next();
   }
+  //var gcsname = Date.now() + '-min-' + req.file.originalname;
+  var gcsname = Date.now() + req.file.originalname;
+
+  // var src = fs.createReadStream(req.file.path);
+  // var ext = path.extname(src.path);
+  // src.pipe(imagemin({ ext: ext }))
+  // src.pipe(fs.createWriteStream(gcsname));
 
   var gcsname = Date.now() + req.file.originalname;
   var file = bucket.file(gcsname);
-  var stream = file.createWriteStream();
+  var stream = file.createWriteStream({
+      public: true,
+      gzip: true,
+      metadata: {
+        contentType: req.file.mimetype,
+        metadata: {
+          custom: 'metadata'
+        }
+      }
+  });
 
   stream.on('error', function (err) {
     req.file.cloudStorageError = err;
@@ -58,6 +77,7 @@ function sendUploadToGCS (req, res, next) {
   });
 
   stream.end(req.file.buffer);
+
 }
 // [END process]
 
@@ -67,8 +87,9 @@ function sendUploadToGCS (req, res, next) {
 // to Cloud Storage.
 // [START multer]
 var multer = require('multer')({
+  //dest: './public/images/uploads'
   inMemory: true,
-  fileSize: 5 * 1024 * 1024, // no larger than 5mb
+  fileSize: 2 * 1024 * 1024, // no larger than 5mb
   rename: function (fieldname, filename) {
     // generate a unique filename
     return filename.replace(/\W+/g, '-').toLowerCase() + Date.now();

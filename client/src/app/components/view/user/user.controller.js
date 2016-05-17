@@ -3,15 +3,13 @@
 
   angular
     .module('votenme')
-    .controller('InitController', InitController);
+    .controller('UserController', UserController);
 
   /** @ngInject */
-  function InitController($timeout, Data, user) {
+  function UserController($timeout, user) {
     var vm = this;
-    Data.isLoading = false;
 
     vm.user = user;
 
   }
-
 })();

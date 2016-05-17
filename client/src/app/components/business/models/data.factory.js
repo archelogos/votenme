@@ -11,18 +11,19 @@
       var data = {};
 
       return {
+        isLoading: false,
         getUser: function(){
           return data.User;
         },
         setUser: function(User){
           data.User = User;
         },
-        getCandidate: function(){
-          return data.Candidate;
+        getCandidates: function(){
+          return data.Candidates;
         },
-        setCandidate: function(Candidate){
-          data.Candidate = Candidate;
-        }
+        setCandidates: function(Candidates){
+          data.Candidates = Candidates;
+        },
       }
     }
 

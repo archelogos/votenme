@@ -21,8 +21,8 @@
       /* Returning Visitor */
       user = User.get({user:userId});
     }
-    
-    Data.setUser(user);
+
+    Data.setUser(user.$promise);
   }
 
 })();

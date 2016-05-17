@@ -10,12 +10,12 @@
     var directive = {
       restrict: 'EA',
       scope: {
-        data: '='
+        data: '=',
       },
       template: 'app/components/presentation/component/component.html',
       link: linkFunc,
       controller: ComponentController,
-      controllerAs: 'vm'
+      controllerAs: 'vm',
     };
 
     return directive;

@@ -1,4 +1,12 @@
+<!-- Voted -->
+<md-card class="voted" ng-if="vm.user.vote">
+  <md-card-content>
+    <p>
+      Ya has votado!
+    </p>
+  </md-card-content>
+</md-card>
+
 <div layout="row">
-  <md-button ui-sref="candidate.list" class="md-raised"> Votar! </md-button>
+  <md-button ui-sref="candidate.list" ng-if="!vm.user.vote" class="md-raised"> Votar! </md-button>
 </div>
-{{vm.user}}

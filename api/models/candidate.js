@@ -16,11 +16,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var config = require('../config');
-var entity = require('./entity');
+var Entity = require('./entity');
+var images = require('../lib/images');
 var router = express.Router();
 
-entity.setKind('Candidate');
-var candidate = entity;
+var candidate = new Entity('Candidate');
 
 // Automatically parse request body as JSON
 router.use(bodyParser.json());
@@ -39,7 +39,7 @@ router.get('/', function list (req, res, next) {
       items: entities,
       nextPageToken: cursor
     });
-  });
+  }, 'votes');
 });
 
 /**
@@ -47,13 +47,33 @@ router.get('/', function list (req, res, next) {
  *
  * Create a new candidate.
  */
-router.post('/', function insert (req, res, next) {
-  candidate.create(req.body, function (err, entity) {
-    if (err) {
-      return next(err);
+router.post('/',
+  images.multer.single('file'),
+  images.sendUploadToGCS,
+  function insert (req, res, next) {
+    var data = req.body;
+
+    // Was an image uploaded? If so, we'll use its public URL
+    // in cloud storage.
+    if (req.file && req.file.cloudStoragePublicUrl) {
+      data.imageUrl = req.file.cloudStoragePublicUrl;
     }
-    res.json(entity);
-  });
+    else{
+      data.imageUrl = false;
+    }
+
+    data.name = data.candidate.name;
+    data.description = data.candidate.description;
+    delete data.candidate;
+    data.created = new Date().toJSON();
+    data.votes = 1;
+
+    candidate.create(data, function (err, entity) {
+      if (err) {
+        return next(err);
+      }
+      res.json(entity);
+    });
 });
 
 /**
@@ -62,7 +82,7 @@ router.post('/', function insert (req, res, next) {
  * Retrieve a candidate.
  */
 router.get('/:candidate', function get (req, res, next) {
-  candidate.read(req.params.book, function (err, entity) {
+  candidate.read(req.params.candidate, function (err, entity) {
     if (err) {
       return next(err);
     }
@@ -71,12 +91,12 @@ router.get('/:candidate', function get (req, res, next) {
 });
 
 /**
- * POST /api/candidate/:id
+ * PUT /api/candidate/:id
  *
  * Update a candidate.
  */
-router.post('/:candidate', function update (req, res, next) {
-  candidate.update(req.params.book, req.body, function (err, entity) {
+router.put('/:candidate', function update (req, res, next) {
+  candidate.update(req.params.candidate, req.body, function (err, entity) {
     if (err) {
       return next(err);
     }
@@ -90,7 +110,7 @@ router.post('/:candidate', function update (req, res, next) {
  * Delete a candidate.
  */
 router.delete('/:candidate', function _delete (req, res, next) {
-  candidate.delete(req.params.book, function (err) {
+  candidate.delete(req.params.candidate, function (err) {
     if (err) {
       return next(err);
     }
@@ -99,7 +119,7 @@ router.delete('/:candidate', function _delete (req, res, next) {
 });
 
 /**
- * Errors on "/api/books/*" routes.
+ * Errors on "/api/candidates/*" routes.
  */
 router.use(function handleRpcError (err, req, res, next) {
   // Format error and forward to generic error handler for logging and

@@ -20,7 +20,7 @@ var config = require('./config');
 
 var app = express();
 
-var whitelist = ['http://localhost:3000'];
+var whitelist = ['http://localhost:3000', 'http://192.168.1.36:3000'];
 var corsOptions = {
   origin: function(origin, callback){
     var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
@@ -35,8 +35,8 @@ app.set('trust proxy', true);
 // User
 app.use('/api/user', cors(corsOptions), require('./models/user'));
 
-// User
-app.use('/api/candidate', require('./models/candidate'));
+// Candidate
+app.use('/api/candidate', cors(corsOptions), require('./models/candidate'));
 
 // Redirect root to /books
 app.get('/', function (req, res) {

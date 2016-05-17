@@ -1,17 +1,35 @@
-<md-progress-linear class="md-accent" ng-if="false" md-mode="indeterminate"></md-progress-linear>
+<md-progress-linear class="md-accent" ng-if="vm.false" md-mode="indeterminate"></md-progress-linear>
 
 <md-sidenav md-component-id="left" class="md-sidenav-left">
   <md-list>
     <md-list-item>
-      <md-button href="">
-        <md-icon>menu</md-icon>
-        <span> votar </span>
+      <md-button ng-click="vm.goTo('init')">
+        <md-icon>home</md-icon>
+        <span> Home </span>
       </md-button>
     </md-list-item>
     <md-list-item>
-      <md-button href="">
-        <md-icon>menu</md-icon>
-        <span> votar </span>
+      <md-button ng-click="vm.goTo('candidate.list')">
+        <md-icon>add_box</md-icon>
+        <span> Votar </span>
+      </md-button>
+    </md-list-item>
+    <md-list-item>
+      <md-button ng-click="vm.goTo('results')">
+        <md-icon>poll</md-icon>
+        <span> Resultados </span>
+      </md-button>
+    </md-list-item>
+    <md-list-item>
+      <md-button ng-click="vm.goTo('user')">
+        <md-icon>account_box</md-icon>
+        <span> Perfil </span>
+      </md-button>
+    </md-list-item>
+    <md-list-item>
+      <md-button ng-click="vm.goTo('about')">
+        <md-icon>info</md-icon>
+        <span> ¿Esto qué es? </span>
       </md-button>
     </md-list-item>
   </md-list>

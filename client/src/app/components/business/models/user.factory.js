@@ -15,9 +15,12 @@
 
       return $resource(APP_CONFIG.API_URL+'user/:user', {user:'@id'}, {
         update: {
-          method: 'PUT' // this method issues a PUT request
+          method: 'PUT', // this method issues a PUT request
         },
-        cache: true
+        query:{
+          isArray: false,
+        },
+        cache: true,
       });
 
     }

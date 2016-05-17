@@ -16,11 +16,10 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var config = require('../config');
-var entity = require('./entity');
+var Entity = require('./entity');
 var router = express.Router();
 
-entity.setKind('User');
-var user = entity;
+var user = new Entity('User');
 
 // Automatically parse request body as JSON
 router.use(bodyParser.json());
@@ -50,7 +49,12 @@ router.get('/', function list (req, res, next) {
  * default values: vote: false, voteId: null
  */
 router.post('/', function insert (req, res, next) {
-  user.create({vote: false, voteId: null}, function (err, entity) {
+  var data = {
+    vote: false,
+    candidate: null,
+    created: new Date().toJSON()
+  };
+  user.create(data, function (err, entity) {
     if (err) {
       return next(err);
     }
@@ -101,7 +105,7 @@ router.delete('/:user', function _delete (req, res, next) {
 });
 
 /**
- * Errors on "/api/books/*" routes.
+ * Errors on "/api/user/*" routes.
  */
 router.use(function handleRpcError (err, req, res, next) {
   // Format error and forward to generic error handler for logging and
