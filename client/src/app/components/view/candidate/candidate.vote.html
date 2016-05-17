@@ -1,26 +1,52 @@
-<div class="vote-fab">
-  <md-button class="md-fab" ng-click="candidate.openBottomSheet()">
-    <md-icon>share</md-icon>
-  </md-button>
-</div>
+<!-- Voted -->
+<md-card class="voted" ng-if="vm.user.vote">
+  <md-card-content>
+    <p>
+      Ya has votado!
+    </p>
+  </md-card-content>
+</md-card>
+
+<!-- Candidate -->
 <div class="vote-container">
   <div flex-gt-xs="50" flex-offset-gt-xs="25">
     <md-card>
-      <img ng-src="{{candidate.imagePath}}" class="md-card-image" alt="Washed Out">
+      <img ng-src="{{vm.selectedCandidate.imageUrl}}" class="md-card-image" alt="">
       <md-card-title>
         <md-card-title-text>
-          <span class="md-headline">Icon action buttons</span>
+          <span class="md-headline">{{vm.selectedCandidate.name}}</span>
         </md-card-title-text>
       </md-card-title>
       <md-card-content>
         <p>
-          The titles of Washed Out's breakthrough song and the first single from Paracosm share the
-          two most important words in Ernest Greene's musical language: feel it. It's a simple request, as well...
+          {{vm.selectedCandidate.description}} - {{vm.selectedCandidate.votes}}
         </p>
       </md-card-content>
       <md-card-actions layout="row" layout-align="end center">
-        <md-button class="md-primary md-raised full" ng-click="candidate.showConfirm($event)">Votar</md-button>
+        <md-button class="md-primary md-raised full" ng-disabled="vm.status !== 'ON_HOLD' || vm.user.vote === true" ng-click="vm.addVote()">
+          <span ng-if="vm.status == 'PROCESSING'"><md-progress-circular md-mode="indeterminate"></md-progress-circular></span>
+          <span ng-if="vm.status == 'ON_HOLD'">Votar</span>
+        </md-button>
       </md-card-actions>
     </md-card>
   </div>
 </div>
+
+<!-- Share Button -->
+<md-menu md-offset="0 -7">
+  <md-button class="md-fab" ng-click="$mdOpenMenu($event)">
+    <md-icon>share</md-icon>
+  </md-button>
+
+  <md-menu-content width="4">
+    <md-menu-item>
+      <md-button ng-click="ctrl.announceClick($index)"><md-icon>share</md-icon><span md-menu-align-target>Facebook</span></md-button>
+    </md-menu-item>
+    <md-menu-item>
+      <md-button ng-click="ctrl.announceClick($index)"><md-icon>share</md-icon><span md-menu-align-target>Twitter</span></md-button>
+    </md-menu-item>
+    <md-menu-item>
+      <md-button ng-click="ctrl.announceClick($index)"><md-icon>share</md-icon><span md-menu-align-target>Whatsapp</span></md-button>
+    </md-menu-item>
+  </md-menu-content>
+</md-menu>

@@ -52,18 +52,11 @@ html {
   padding: 0.2em 0;
 }
 
-.list-fab .md-fab{
+.md-fab{
   position: fixed;
   right: 3%;
   bottom: 24px;
   z-index: 1;
-}
-
-.vote-fab .md-fab{
-  position: absolute;;
-  right: 3%;
-  top: 204px;
-  z-index: 2;
 }
 
 .candidates-container{
@@ -75,6 +68,10 @@ html {
   width: 400px;
   box-sizing: border-box;
   margin: 16px;
+}
+
+.candidate img{
+  max-height: 240px;
 }
 
 .form{
@@ -94,20 +91,25 @@ md-radio-button, md-checkbox{
   margin: 16px 8px;
 }
 
+img.thumbnail{
+  margin: 16px 0;
+  width: 100px;
+}
+
 .vote-container{
   display: flex;
 }
 
 .vote-container md-card{
-  margin: 0;
+  margin: 16px;
 }
 
 .vote-container md-card img{
-  height: 240px;
+  max-height: 240px;
 }
 
 .vote-container md-card .full{
-  width: 100%;
+  /*width: 100%;*/
 }
 
 .results-container{
@@ -118,8 +120,20 @@ md-radio-button, md-checkbox{
 }
 
 .results-container md-list md-list-item{
-  margin-left: 16px;
+  padding-left: 16px;
 }
 
 .results-container md-list md-avatar{
+}
+
+md-card.voted{
+  margin: 16px;
+  background-color: green;
+  color: #fff;
+}
+
+md-card.unvoted{
+  margin: 16px;
+  background-color: red;
+  color: #fff;
 }

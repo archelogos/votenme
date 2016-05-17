@@ -10,13 +10,13 @@
     var directive = {
       restrict: 'E',
       scope: {
-        data: '='
+        data: '=',
       },
       templateNamespace: 'html',
       templateUrl: 'app/components/presentation/layout/layout.html',
       link: linkFunc,
       controller: LayoutController,
-      controllerAs: 'vm'
+      controllerAs: 'vm',
     };
 
     return directive;
@@ -33,10 +33,15 @@
     }
 
     /** @ngInject */
-    function LayoutController($log, $mdSidenav) {
+    function LayoutController($rootScope, $state, $log, $mdSidenav) {
       var vm = this;
 
       vm.openLeftMenu = function() {
+        $mdSidenav('left').toggle();
+      };
+
+      vm.goTo = function(state){
+        $state.go(state);
         $mdSidenav('left').toggle();
       };
 

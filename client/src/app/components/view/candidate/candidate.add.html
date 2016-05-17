@@ -1,3 +1,12 @@
+<!-- Voted -->
+<md-card class="voted" ng-if="vm.user.vote">
+  <md-card-content>
+    <p>
+      Ya has votado!
+    </p>
+  </md-card-content>
+</md-card>
+
 <div class="form">
   <md-card>
     <md-card-title>
@@ -7,26 +16,41 @@
       </md-card-title-text>
     </md-card-title>
     <md-card-content>
-      <form>
+      <form name="candidateForm" ng-submit="vm.addCandidate()" novalidate>
         <md-input-container class="md-block">
-          <input name="lastName" ng-model="lastName" placeholder="Nombre" required>
-          <div ng-messages="userForm.lastName.$error" ng-show="userForm.lastName.$dirty">
-            <div ng-message="required">This is required!</div>
+          <input name="name" ng-model="vm.newCandidate.name" required placeholder="Nombre">
+          <div ng-messages="candidateForm.name.$error" ng-show="candidateForm.name.$dirty">
+            <div ng-message="required">Campo obligatorio</div>
           </div>
         </md-input-container>
         <md-input-container class="md-block">
-          <input name="lastName" ng-model="lastName" placeholder="Nombre" required>
-          <div ng-messages="userForm.lastName.$error" ng-show="userForm.lastName.$dirty">
-            <div ng-message="required">This is required!</div>
+          <input name="description" ng-model="vm.newCandidate.description" required placeholder="Descripción">
+          <div ng-messages="candidateForm.description.$error" ng-show="candidateForm.description.$dirty">
+            <div ng-message="required">Campo obligatorio</div>
           </div>
+        </md-input-container>
+        <md-input-container>
+          <input type="file" ngf-select ng-model="vm.file" name="image"
+                     accept="image/*" ngf-max-size="1MB" required
+                     ngf-model-invalid="errorFile">
+           <div ng-messages="candidateForm.image.$error" ng-show="candidateForm.image.$dirty">
+             <div ng-message="maxSize">File too large
+                 {{errorFile.size / 1000000|number:1}}MB: max 1MB</div>
+             <div ng-message="required">Campo obligatorio</div>
+           </div>
+           <img ng-show="candidateForm.image.$valid" ngf-thumbnail="vm.file" class="thumbnail">
+           <md-button class="md-warn" ng-click="vm.file = null" ng-show="vm.file">Remove</md-button>
         </md-input-container>
         <div>
-          <md-checkbox indeterminate="true">Estoy seguro de mi voto</md-checkbox>
+          <md-checkbox required checked="true">Estoy seguro de mi voto</md-checkbox>
         </div>
+        <md-card-actions layout="row" layout-align="end center">
+          <md-button type="submit" ng-disabled="candidateForm.$invalid || vm.status !== 'ON_HOLD' || vm.user.vote === true" class="md-accent md-raised">
+            <span ng-if="vm.status == 'PROCESSING'"><md-progress-circular md-mode="indeterminate"></md-progress-circular></span>
+            <span ng-if="vm.status == 'ON_HOLD'">Crear</span>
+          </md-button>
+        </md-card-actions>
       </form>
     </md-card-content>
-    <md-card-actions layout="row" layout-align="end center">
-      <md-button class="md-accent md-raised">Crear</md-button>
-    </md-card-actions>
   </md-card>
 </div>

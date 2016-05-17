@@ -1,0 +1,26 @@
+{
+  "name": "@votenme/api",
+  "version": "0.0.0",
+  "description": "",
+  "license": "",
+  "repository": "",
+  "scripts": {
+    "start": "node app.js",
+    "monitor": "nodemon app.js",
+    "deploy": "gcloud preview app deploy app.yaml"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "fs": "0.0.2",
+    "gcloud": "~0.31.0",
+    "image-min": "^0.3.2",
+    "kerberos": "^0.0.19",
+    "lodash": "^4.11.1",
+    "multer": "^1.1.0",
+    "nconf": "^0.8.4",
+    "path": "^0.12.7",
+    "prompt": "^1.0.0"
+  }
+}

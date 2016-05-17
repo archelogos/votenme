@@ -10,11 +10,11 @@
         'APP_VERSION_NAME' : 'just-talking',
         'LANGUAGES' : {
             'es-ES' : true,
-            'en-EN' : true
+            'en-EN' : true,
         },
         'DEBUG_MODE' : true,
         'ERROR_REPORT' : false,
-        'API_URL': ''
+        'API_URL': 'http://localhost:8080/api/',
     })
 
 })();

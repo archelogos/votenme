@@ -6,9 +6,23 @@
     .run(runBlock);
 
   /** @ngInject */
-  function runBlock($log) {
+  function runBlock($log, $cookies, Data, User) {
 
-    $log.debug('runBlock end');
+    var user = null;
+    var userId = $cookies.get('user');
+
+    if(angular.isUndefined(userId)){
+      /* New Visitor */
+      user = User.save(function(){
+        $cookies.put('user', user.id);
+      });
+    }
+    else{
+      /* Returning Visitor */
+      user = User.get({user:userId});
+    }
+
+    Data.setUser(user.$promise);
   }
 
 })();
