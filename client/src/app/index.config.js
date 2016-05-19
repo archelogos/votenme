@@ -12,8 +12,8 @@
     $logProvider.debugEnabled(APP_CONFIG.DEBUG_MODE);
 
     $mdThemingProvider.theme('default')
-    .primaryPalette('indigo')
-    .accentPalette('red');
+    .primaryPalette('grey')
+    .accentPalette('blue');
   }
 
 })();

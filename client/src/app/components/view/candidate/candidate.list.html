@@ -1,16 +1,7 @@
-<!-- Voted -->
-<md-card class="voted" ng-if="vm.user.vote">
-  <md-card-content>
-    <p>
-      Ya has votado!
-    </p>
-  </md-card-content>
-</md-card>
-
 <!-- Candidates -->
 <div class="candidates-container">
   <md-card class="candidate" ng-repeat="candidate in vm.candidates | orderBy:'-votes'">
-    <img ng-src="{{candidate.imageUrl}}" class="md-card-image" alt="image caption">
+    <div style="background-image:url('{{candidate.imageUrl}}')" class="image"></div>
     <md-card-title>
       <md-card-title-text>
         <span class="md-headline">{{candidate.name}}</span>
@@ -18,11 +9,14 @@
     </md-card-title>
     <md-card-content>
       <p>
-        {{candidate.description}} - {{candidate.votes}}
+        {{candidate.description}}
+      </p>
+      <p>
+        <md-icon class="md-accent">grade</md-icon> {{candidate.votes}} Votos
       </p>
     </md-card-content>
     <md-card-actions layout="row" layout-align="end center">
-      <md-button class="md-primary md-raised" ng-href="candidate/{{candidate.id}}">Ver</md-button>
+      <md-button class="md-accent md-raised" ng-href="candidate/{{candidate.id}}">Ver</md-button>
     </md-card-actions>
   </md-card>
 </div>

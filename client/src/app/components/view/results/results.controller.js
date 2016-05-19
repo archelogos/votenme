@@ -6,9 +6,11 @@
     .controller('ResultsController', ResultsController);
 
   /** @ngInject */
-  function ResultsController($timeout, candidates, Candidate) {
+  function ResultsController($timeout, candidates, Candidate, Data) {
     var vm = this;
-
+    Data.notify('initialResolved');
+    Data.notify('partialResolved');
+    
     vm.candidates = candidates.items;
     vm.pageToken = candidates.nextPageToken;
 
@@ -20,8 +22,6 @@
         vm.pageToken = auxCandidates.nextPageToken;
       });
     };
-
-    vm.imagePath = 'assets/images/student.jpg';
 
   }
 })();

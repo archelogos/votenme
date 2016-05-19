@@ -96,11 +96,17 @@ router.get('/:candidate', function get (req, res, next) {
  * Update a candidate.
  */
 router.put('/:candidate', function update (req, res, next) {
-  candidate.update(req.params.candidate, req.body, function (err, entity) {
+  candidate.read(req.params.candidate, function (err, entity) {
     if (err) {
       return next(err);
     }
-    res.json(entity);
+    req.body.votes = entity.votes + 1;
+    candidate.update(req.params.candidate, req.body, function (err, entity) {
+      if (err) {
+        return next(err);
+      }
+      res.json(entity);
+    });
   });
 });
 

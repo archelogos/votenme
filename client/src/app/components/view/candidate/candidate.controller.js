@@ -10,7 +10,8 @@
      user, candidates, Upload, APP_CONFIG) {
 
     var vm = this;
-    Data.isLoading = false;
+    Data.notify('initialResolved');
+    Data.notify('partialResolved');
 
     vm.user = user;
     vm.candidates = candidates.items;
@@ -28,7 +29,6 @@
 
     }
 
-
     vm.addCandidate = function (){
       vm.status = 'PROCESSING';
 
@@ -40,6 +40,9 @@
         user.vote = true;
         user.candidate = candidate.data.id;
         User.update({user: vm.user.id}, user, function(){
+          var candidates = Candidate.query();
+          // Set promise in Data Factory
+          Data.setCandidates(candidates.$promise);
           vm.status = 'SUCCESS';
           $state.go('results');
         });
@@ -53,18 +56,20 @@
       user.candidate = vm.selectedCandidate.id;
 
       var candidate = vm.selectedCandidate;
-      ++candidate.votes;
+      //++candidate.votes; //IN server side
 
       vm.status = 'PROCESSING';
       Candidate.update({candidate: vm.selectedCandidate.id}, candidate,
         function(){
           User.update({user: vm.user.id}, user, function(){
+            var candidates = Candidate.query();
+            // Set promise in Data Factory
+            Data.setCandidates(candidates.$promise);
             vm.status = 'SUCCESS';
             $state.go('results');
           });
       });
     };
-
 
     vm.loadMoreCandidates = function(){
       var auxCandidates = Candidate.query({pageToken: vm.pageToken}, function(){
@@ -76,8 +81,6 @@
     };
 
 
-
-    vm.imagePath = 'assets/images/student.jpg';
 
 
   }

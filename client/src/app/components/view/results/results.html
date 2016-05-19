@@ -2,29 +2,15 @@
 <div class="results-container">
   <div flex flex-gt-xs="50" flex-offset-gt-xs="25">
     <md-list class="md-primary">
-      <md-subheader class="md-no-sticky">Top más votados!</md-subheader>
+      <md-subheader class="md-no-sticky">Top más votados</md-subheader>
       <md-list-item ng-repeat="candidate in vm.candidates | orderBy:'-votes'">
-        <img ng-src="{{candidate.imageUrl}}" class="md-avatar" />
-        <span> {{candidate.name}} </span>
-        <span>&nbsp;- Votos: {{candidate.votes}}</span>
+        <img ng-src="{{candidate.imageUrl}}" class="md-avatar" alt="{{candidate.name}}" />
+        <span> {{candidate.name}}<br> <md-icon class="md-accent">grade</md-icon> {{candidate.votes}} Votos </span>
         <span flex></span>
         <div layout="row" layout-align="end center">
-          <md-menu md-offset="0 -7">
-            <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
-              <md-icon>share</md-icon>
-            </md-button>
-            <md-menu-content width="4">
-              <md-menu-item>
-                <md-button ng-click="ctrl.announceClick($index)"><md-icon>share</md-icon><span md-menu-align-target>Facebook</span></md-button>
-              </md-menu-item>
-              <md-menu-item>
-                <md-button ng-click="ctrl.announceClick($index)"><md-icon>share</md-icon><span md-menu-align-target>Twitter</span></md-button>
-              </md-menu-item>
-              <md-menu-item>
-                <md-button ng-click="ctrl.announceClick($index)"><md-icon>share</md-icon><span md-menu-align-target>Whatsapp</span></md-button>
-              </md-menu-item>
-            </md-menu-content>
-          </md-menu>
+          <!-- Share Button -->
+          <vm-share type="'list'" candidate="candidate">
+          </vm-share>
         </div>
         <md-divider></md-divider>
       </md-list-item>

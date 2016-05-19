@@ -6,7 +6,13 @@
   "license": "",
   "repository": "",
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "start": "node app.js",
+    "monitor": "nodemon app.js",
+    "deploy": "gcloud preview app deploy app.yaml"
+  },
+  "dependencies":{
+    "express": "^4.13.4"
   },
   "peerDependencies": {
     "eslint-plugin-import": "^1.7.0",
