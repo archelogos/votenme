@@ -21,7 +21,7 @@
       controllerAs: 'vm',
       resolve: {
         user: function(Data){
-          Data.isLoading = true;
+          Data.notify('partialLoading');
           return Data.getUser();
         },
       },
@@ -32,7 +32,7 @@
       template: '<ui-view/>',
       resolve: {
         user: function(Data){
-          Data.isLoading = true;
+          Data.notify('partialLoading');
           return Data.getUser();
         },
         candidates: function(Data, Candidate){
@@ -76,6 +76,7 @@
       controllerAs: 'vm',
       resolve: {
         candidates: function(Data, Candidate){
+          Data.notify('partialLoading');
           if(angular.isDefined(Data.getCandidates())){
             return Data.getCandidates();
           }
@@ -95,6 +96,7 @@
       controllerAs: 'vm',
       resolve: {
         user: function(Data, User){
+          Data.notify('partialLoading');
           if(angular.isDefined(Data.getUser())){
             return Data.getUser();
           }

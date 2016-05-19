@@ -1,12 +1,72 @@
-<!-- Voted -->
-<md-card class="voted" ng-if="vm.user.vote">
-  <md-card-content>
-    <p>
-      Ya has votado!
-    </p>
-  </md-card-content>
-</md-card>
+<md-content flex>
 
-<div layout="row">
-  <md-button ui-sref="candidate.list" ng-if="!vm.user.vote" class="md-raised"> Votar! </md-button>
-</div>
+  <header class="background-sky">
+    <div class="hero">
+      <div layout="row" layout-xs="column" layout-align="center">
+        <div flex="50" flex-xs="100" class="claim">
+          <h2>Elige al próximo presidente</h2>
+          <p><b>¿Harto de los políticos? Estás de suerte.</b><br><br> Con voten.me puedes votar a <b>quien tú quieras</b>, por ejemplo a <b>{{vm.randomHero.name}}</b> o a <b>tí mismo!</b></p>
+          <md-button ui-sref="candidate.list" ng-if="!vm.user.vote" class="btn md-raised">
+            <md-icon>done</md-icon>
+             Ver candidatos
+          </md-button>
+          <md-button ui-sref="results" ng-if="vm.user.vote" class="btn md-raised">
+            <md-icon>poll</md-icon>
+              Ver resultados
+           </md-button>
+        </div>
+        <div flex="50" flex-xs="100">
+          <md-card>
+            <img ng-src="{{vm.randomHero.imageUrl}}" class="md-card-image" alt="candidato votenme">
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">{{vm.randomHero.name}}</span>
+              </md-card-title-text>
+            </md-card-title>
+            <md-card-content>
+              <p>
+                {{vm.randomHero.description}}
+              </p>
+            </md-card-content>
+            <md-card-actions layout="row" layout-align="end center">
+              <md-button class="md-accent" ng-click="vm.nextRandom()">
+                <md-icon>loop</md-icon><span> Ver otro</span>
+              </md-button>
+            </md-card-actions>
+          </md-card>
+        </div>
+      </div>
+    </header>
+
+    <article class="article">
+      <div layout="row" layout-xs="column" layout-align="center">
+        <div flex="40" flex-offset="10" flex-offset-xs="0" flex-xs="100" class="claim">
+          <h3>La representación ya no es tu excusa</h3>
+          <p><b>Los candidatos los creas tú mismo.</b> Si los políticos actuales te convencen, simplemente <b>tienes que añadirlos para darles tu voto</b>. Si en caso contrario no te sientes representado por la clase política, <b>podrás añadir el candidato que más te guste</b>.</p>
+          <md-button class="md-accent" ui-sref="candidate.add">Crear candidato</p>
+        </div>
+        <div flex="50" flex-xs="100" class="claim">
+          <img src="assets/images/gangster.png" alt="indignado">
+        </div>
+      </div>
+    </article>
+
+    <article class="article alt">
+      <div layout="row" layout-xs="column" layout-align="center">
+        <div flex="40" flex-xs="100" class="hide-gt-xs claim">
+          <h3>Tu puedes ser el elegido</h3>
+          <p>En voten.me no hay ningún límite. ¿No es genial?. <b>Hazte un selfie,</b> pon tu nombre y una breve descrpición y serás un <b>candidato al que todos podrán votar</b>. En voten.me sí que se puede llegar a acuerdos.</p>
+        </div>
+        <div flex="50" flex-xs="100" class="claim">
+          <img src="assets/images/list.png" alt="crea tu candidato">
+        </div>
+        <div flex="40" flex-xs="100" class="hide-xs claim">
+          <h3>Tu puedes ser el elegido</h3>
+          <p>En voten.me no hay ningún límite. ¿No es genial?. <b>Hazte un selfie,</b> pon tu nombre y una breve descrpición y serás un <b>candidato al que todos podrán votar</b>. En voten.me los acuerdos se dan por hecho.</p>
+        </div>
+      </div>
+    </article>
+
+
+
+  </md-content>

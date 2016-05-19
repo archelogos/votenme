@@ -20,7 +20,8 @@ var config = require('./config');
 
 var app = express();
 
-var whitelist = ['http://localhost:3000', 'http://192.168.1.36:3000'];
+var whitelist = ['http://localhost:3000', 'https://votenme.appspot.com',
+  'http://votenme.appspot.com'];
 var corsOptions = {
   origin: function(origin, callback){
     var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
@@ -28,15 +29,14 @@ var corsOptions = {
   }
 };
 
-app.disable('etag');
-app.set('views', path.join(__dirname, 'views'));
+//app.disable('etag');
 app.set('trust proxy', true);
 
 // User
-app.use('/api/user', cors(corsOptions), require('./models/user'));
+app.use('/user', cors(corsOptions), require('./models/user'));
 
 // Candidate
-app.use('/api/candidate', cors(corsOptions), require('./models/candidate'));
+app.use('/candidate', cors(corsOptions), require('./models/candidate'));
 
 // Redirect root to /books
 app.get('/', function (req, res) {

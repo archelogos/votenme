@@ -22,19 +22,25 @@
     return directive;
 
     function linkFunc(scope, el, attr, vm) {
-      var watcher;
 
-      watcher = scope.$watch('', function() {
-
-      });
-      scope.$on('$destroy', function () {
-        watcher();
-      });
     }
 
     /** @ngInject */
-    function LayoutController($rootScope, $state, $log, $mdSidenav) {
+    function LayoutController($scope, $state, $log, $mdSidenav, Data) {
       var vm = this;
+      $scope.initialLoading = Data.initialLoading;
+      $scope.partialLoading = Data.partialLoading;
+
+      $scope.user = Data.getUser();
+
+      Data.subscribe('initialResolved', $scope,
+        function(){
+          $scope.initialLoading = Data.initialLoading;
+          Data.getUser().then(function(data){$scope.user=data});});
+
+      Data.subscribe('partialLoading', $scope, function(){$scope.partialLoading = Data.partialLoading;});
+      Data.subscribe('partialResolved', $scope, function(){$scope.partialLoading = Data.partialLoading;});
+
 
       vm.openLeftMenu = function() {
         $mdSidenav('left').toggle();

@@ -1,50 +1,70 @@
-<md-progress-linear class="md-accent" ng-if="vm.false" md-mode="indeterminate"></md-progress-linear>
+<md-progress-linear class="md-accent" ng-if="initialLoading" md-mode="indeterminate"></md-progress-linear>
 
-<md-sidenav md-component-id="left" class="md-sidenav-left">
-  <md-list>
-    <md-list-item>
-      <md-button ng-click="vm.goTo('init')">
-        <md-icon>home</md-icon>
-        <span> Home </span>
-      </md-button>
-    </md-list-item>
-    <md-list-item>
-      <md-button ng-click="vm.goTo('candidate.list')">
-        <md-icon>add_box</md-icon>
-        <span> Votar </span>
-      </md-button>
-    </md-list-item>
-    <md-list-item>
-      <md-button ng-click="vm.goTo('results')">
-        <md-icon>poll</md-icon>
-        <span> Resultados </span>
-      </md-button>
-    </md-list-item>
-    <md-list-item>
-      <md-button ng-click="vm.goTo('user')">
-        <md-icon>account_box</md-icon>
-        <span> Perfil </span>
-      </md-button>
-    </md-list-item>
-    <md-list-item>
-      <md-button ng-click="vm.goTo('about')">
-        <md-icon>info</md-icon>
-        <span> ¿Esto qué es? </span>
-      </md-button>
-    </md-list-item>
-  </md-list>
-</md-sidenav>
+<div layout="row" layout-align="center center" class="overlay" ng-if="partialLoading">
+    <span flex="25">
+    <md-progress-circular flex="50" md-diameter="100%" class="md-accent loader" md-mode="indeterminate"></md-progress-circular>
+    <span flex="25">
+</div>
 
-<md-toolbar>
-  <div class="md-toolbar-tools">
-    <md-button class="md-icon-button" ng-click="vm.openLeftMenu()">
-      <md-icon>menu</md-icon>
-    </md-button>
-    <span>voten.me</span>
-    <!-- fill up the space between left and right area -->
-    <span flex></span>
-    <md-button hide>
-      Right Bar Button
-    </md-button>
-  </div>
-</md-toolbar>
+<div ng-if="!initialLoading">
+  <md-sidenav md-component-id="left" class="md-sidenav-left vm-sidenav">
+    <md-toolbar class="sidenav-header md-accent">
+      <h1 class="md-toolbar-tools">voten.me</h1>
+    </md-toolbar>
+    <md-list>
+      <md-list-item>
+        <md-button ng-click="vm.goTo('init')">
+          <md-icon class="md-primary">home</md-icon>
+          <span> Home </span>
+        </md-button>
+      </md-list-item>
+      <md-list-item>
+        <md-button ng-click="vm.goTo('candidate.list')">
+          <md-icon class="md-primary">add_box</md-icon>
+          <span> Votar </span>
+        </md-button>
+      </md-list-item>
+      <md-list-item>
+        <md-button ng-click="vm.goTo('results')">
+          <md-icon class="md-primary">poll</md-icon>
+          <span> Resultados </span>
+        </md-button>
+      </md-list-item>
+      <md-list-item>
+        <md-button ng-click="vm.goTo('user')">
+          <md-icon class="md-primary">account_box</md-icon>
+          <span> Perfil </span>
+        </md-button>
+      </md-list-item>
+      <md-list-item>
+        <md-button ng-click="vm.goTo('about')">
+          <md-icon class="md-primary">info</md-icon>
+          <span> Proyecto </span>
+        </md-button>
+      </md-list-item>
+    </md-list>
+  </md-sidenav>
+
+  <md-toolbar class="vm-toolbar" md-whiteframe="3">
+    <div class="md-toolbar-tools">
+      <md-button class="md-icon-button" ng-click="vm.openLeftMenu()">
+        <md-icon>menu</md-icon>
+      </md-button>
+      <span class="md-accent">voten.me</span>
+      <!-- fill up the space between left and right area -->
+      <span flex></span>
+      <md-button ng-if="user.vote" class="md-icon-button">
+        <md-icon class="vm-voted">info</md-icon>
+        <md-tooltip md-direction="left">
+          Ya has votado!
+        </md-tooltip>
+      </md-button>
+      <md-button ng-if="!user.vote" class="md-icon-button">
+        <md-icon class="vm-unvoted">error</md-icon>
+        <md-tooltip md-direction="left">
+          Aún no has votado!
+        </md-tooltip>
+      </md-button>
+    </div>
+  </md-toolbar>
+</div>

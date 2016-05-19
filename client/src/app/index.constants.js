@@ -1,4 +1,3 @@
-/* global malarkey:false, moment:false */
 (function() {
   'use strict';
 
@@ -14,7 +13,8 @@
         },
         'DEBUG_MODE' : true,
         'ERROR_REPORT' : false,
-        'API_URL': 'http://localhost:8080/api/',
+        //'API_URL': 'http://localhost:8080/',
+        'API_URL': 'https://api-dot-votenme.appspot.com/'
     })
 
 })();

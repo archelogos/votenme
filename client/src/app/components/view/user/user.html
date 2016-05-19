@@ -11,6 +11,7 @@
         <md-card class="voted" ng-if="vm.user.vote">
           <md-card-content>
             <p>
+              <md-icon>info</md-icon>
               Ya has votado!
             </p>
           </md-card-content>
@@ -18,16 +19,17 @@
         <md-card class="unvoted" ng-if="!vm.user.vote">
           <md-card-content>
             <p>
+              <md-icon>error</md-icon>
               Aún no has votado!
             </p>
           </md-card-content>
         </md-card>
       </md-card-content>
       <md-card-actions layout="row" layout-align="end center">
-        <md-button ng-if="vm.user.vote" class="md-primary" ng-href="candidate/{{vm.user.candidate}}">
+        <md-button ng-if="vm.user.vote" class="md-accent" ng-href="candidate/{{vm.user.candidate}}">
           Ver Voto
         </md-button>
-        <md-button ng-if="!vm.user.vote" class="md-primary" ui-sref="candidate.list">
+        <md-button ng-if="!vm.user.vote" class="md-accent" ui-sref="candidate.list">
           Votar
         </md-button>
       </md-card-actions>

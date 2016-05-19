@@ -1,0 +1,83 @@
+<!-- FAB VIEW -->
+<md-menu md-offset="0 -7" ng-if="type === 'fab'">
+  <md-button class="md-fab" ng-click="$mdOpenMenu($event)">
+    <md-icon>share</md-icon>
+  </md-button>
+
+  <md-menu-content width="4">
+    <md-menu-item>
+      <md-button href="#"
+        socialshare
+        socialshare-provider="facebook"
+        socialshare-text="Acabo de votar a {{candidate.name}}"
+        socialshare-media="{{candidate.imageUrl}}"
+        socialshare-url="https://votenme.appspot.com/candidate/{{candidate.id}}">
+        <md-icon md-svg-src="assets/images/facebook-logo.svg" aria-label="facebook "></md-icon>
+        <span md-menu-align-target>Facebook</span>
+      </md-button>
+    </md-menu-item>
+    <md-menu-item>
+      <md-button href="#"
+        socialshare
+        socialshare-provider="twitter"
+        socialshare-text="Acabo de votar a {{candidate.name}}"
+        socialshare-hashtags="votenme, 26J"
+        socialshare-url="https://votenme.appspot.com/candidate/{{candidate.id}}">
+        <md-icon md-svg-src="assets/images/twitter-logo.svg" aria-label="twitter "></md-icon>
+        <span md-menu-align-target>Twitter</span>
+      </md-button>
+    </md-menu-item>
+    <md-menu-item>
+      <md-button href="#"
+        socialshare
+        socialshare-provider="whatsapp"
+        socialshare-text="Acabo de votar a {{candidate.name}}"
+        socialshare-url="https://votenme.appspot.com/candidate/{{candidate.id}}">
+        <md-icon md-svg-src="assets/images/whatsapp-logo.svg" aria-label="whatsapp "></md-icon>
+        <span md-menu-align-target>Whatsapp</span>
+      </md-button>
+    </md-menu-item>
+  </md-menu-content>
+</md-menu>
+
+<!-- LIST VIEW -->
+<md-menu md-offset="0 -7" ng-if="type === 'list'">
+  <md-button class="md-icon-button" ng-click="$mdOpenMenu($event)">
+    <md-icon>share</md-icon>
+  </md-button>
+
+  <md-menu-content width="4">
+    <md-menu-item>
+      <md-button href="#"
+        socialshare
+        socialshare-provider="facebook"
+        socialshare-text="Acabo de votar a {{candidate.name}}"
+        socialshare-media="{{candidate.imageUrl}}"
+        socialshare-url="https://votenme.appspot.com/candidate/{{candidate.id}}">
+        <md-icon md-svg-src="assets/images/facebook-logo.svg" aria-label="facebook "></md-icon>
+        <span md-menu-align-target>Facebook</span>
+      </md-button>
+    </md-menu-item>
+    <md-menu-item>
+      <md-button href="#"
+        socialshare
+        socialshare-provider="twitter"
+        socialshare-text="Acabo de votar a {{candidate.name}}"
+        socialshare-hashtags="votenme, 26J"
+        socialshare-url="https://votenme.appspot.com/candidate/{{candidate.id}}">
+        <md-icon md-svg-src="assets/images/twitter-logo.svg" aria-label="twitter "></md-icon>
+        <span md-menu-align-target>Twitter</span>
+      </md-button>
+    </md-menu-item>
+    <md-menu-item>
+      <md-button href="#"
+        socialshare
+        socialshare-provider="whatsapp"
+        socialshare-text="Acabo de votar a {{candidate.name}}"
+        socialshare-url="https://votenme.appspot.com/candidate/{{candidate.id}}">
+        <md-icon md-svg-src="assets/images/whatsapp-logo.svg" aria-label="whatsapp "></md-icon>
+        <span md-menu-align-target>Whatsapp</span>
+      </md-button>
+    </md-menu-item>
+  </md-menu-content>
+</md-menu>
