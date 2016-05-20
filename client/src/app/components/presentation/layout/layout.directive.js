@@ -26,8 +26,10 @@
     }
 
     /** @ngInject */
-    function LayoutController($scope, $state, $log, $mdSidenav, Data) {
+    function LayoutController($scope, $state, $log, $mdSidenav, Data, APP_CONFIG) {
       var vm = this;
+      vm.version = APP_CONFIG.APP_VERSION;
+
       $scope.initialLoading = Data.initialLoading;
       $scope.partialLoading = Data.partialLoading;
 
