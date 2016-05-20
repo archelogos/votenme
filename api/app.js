@@ -21,7 +21,7 @@ var config = require('./config');
 var app = express();
 
 var whitelist = ['http://localhost:3000', 'https://votenme.appspot.com',
-  'http://votenme.appspot.com'];
+  'http://votenme.appspot.com', 'http://voten.me'];
 var corsOptions = {
   origin: function(origin, callback){
     var originIsWhitelisted = whitelist.indexOf(origin) !== -1;
