@@ -107,21 +107,11 @@ function Entity (kind){
       if (err) {
         return cb(err);
       }
-      var hasMore;
-      if(entities.length === limit){
-        if(nextQuery){
-          //has more
-          hasMore = nextQuery.startVal;
-        }
-        else{
-          //exact same qty
-          hasMore = false;
-        }
-      }
-      else{
-        // no more
-        hasMore = false;
-      }
+      // same qty or no more
+      var hasMore = false;
+      if(entities.length === limit && nextQuery)
+        hasMore = nextQuery.startVal;
+
       //var hasMore = entities.length === limit ? nextQuery.startVal : false;
       cb(null, entities.map(fromDatastore), hasMore);
     });
