@@ -45,7 +45,8 @@ function sendUploadToGCS (req, res, next) {
     return next();
   }
   //var gcsname = Date.now() + '-min-' + req.file.originalname;
-  var gcsname = Date.now() + req.file.originalname;
+  //var randomName = Math.floor(Math.random() * 99) + 1;
+  //var gcsname = Date.now() + req.file.originalname;
 
   // var src = fs.createReadStream(req.file.path);
   // var ext = path.extname(src.path);

@@ -107,7 +107,12 @@ function Entity (kind){
       if (err) {
         return cb(err);
       }
-      var hasMore = entities.length === limit ? nextQuery.startVal : false;
+      // same qty or no more
+      var hasMore = false;
+      if(entities.length === limit && nextQuery)
+        hasMore = nextQuery.startVal;
+
+      //var hasMore = entities.length === limit ? nextQuery.startVal : false;
       cb(null, entities.map(fromDatastore), hasMore);
     });
   };

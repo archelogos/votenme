@@ -5,7 +5,7 @@
     .module('votenme')
     .constant('APP_CONFIG',{
         'APP_NAME' : 'votenme',
-        'APP_VERSION' : '0.1.0',
+        'APP_VERSION' : '0.1.2',
         'APP_VERSION_NAME' : 'doughnut-insult',
         'LANGUAGES' : {
             'es-ES' : true,
